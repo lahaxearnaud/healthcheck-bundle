@@ -30,9 +30,6 @@ jobs:
         needs: build-php
         steps:
             -   uses: actions/checkout@v2
-            -   uses: c-py/action-dotenv-to-setenv@v3
-                with:
-                    env-file: .env.test
             -   name: "Cache dependencies installed with composer"
                 uses: "actions/cache@v2"
                 with:
