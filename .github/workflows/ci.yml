@@ -36,14 +36,6 @@ jobs:
                     path: "vendor"
                     key: "php-8.1-composer-${{ hashFiles('composer.json') }}"
                     restore-keys: "php-8.1-composer"
-            -   uses: actions/cache@v2
-                with:
-                    path: 'public/build'
-                    key: ${{ github.sha }}
-            -   uses: actions/cache@v2
-                with:
-                    path: 'public/bundles'
-                    key: ${{ github.sha }}
             -   uses: php-actions/composer@v6
                 with:
                     php_version: "8.1"
