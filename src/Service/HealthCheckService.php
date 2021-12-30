@@ -7,6 +7,9 @@ use Alahaxe\HealthCheckBundle\Contract\CheckInterface;
 
 class HealthCheckService
 {
+    /**
+     * @param iterable<CheckStatus> $checks
+     */
     public function __construct(
         protected iterable $checks
     ) {

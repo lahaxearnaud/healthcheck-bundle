@@ -20,7 +20,7 @@ class HealthCheckCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure():void
     {
         $this->setDescription('Health check command')
             ->addUsage('./bin/console healthcheck');

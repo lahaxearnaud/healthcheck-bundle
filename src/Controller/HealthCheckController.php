@@ -13,7 +13,7 @@ class HealthCheckController extends AbstractController
     {
         $result = $healthCheckService->generateStatus();
 
-        $httpStatus = max(array_map(static function (CheckStatus $checkStatus):int {
+        $httpStatus = (int) max(array_map(static function (CheckStatus $checkStatus):int {
             return $checkStatus->getHttpStatus();
         }, $result));
 
