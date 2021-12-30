@@ -57,7 +57,6 @@ security:
 
 ```
 
-
 ## Documentation
 
 ### Add a custom check
@@ -87,6 +86,18 @@ class AppCheck implements CheckInterface
     }
 }
 ```
+
+The output on `/_healthcheck` will be:
+
+````json
+{
+    app: {
+        payload: "An optional message, publicly exposed",
+        status: "ok"
+    }
+}
+````
+
 
 Register the service with the tag `lahaxearnaud.healthcheck.check` :
 
