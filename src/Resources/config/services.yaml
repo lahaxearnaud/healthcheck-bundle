@@ -1,0 +1,22 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+
+    Alahaxe\HealthCheckBundle\Service\Check\:
+        resource: '../../Service/Check'
+        tags: ['lahaxearnaud.healthcheck.check']
+
+    Alahaxe\HealthCheckBundle\Controller\HealthCheckController:
+        autowire: true
+        tags: ['controller.service_arguments']
+
+    Alahaxe\HealthCheckBundle\Command\HealthCheckCommand:
+        autowire: true
+        tags: ['console.command']
+
+    Alahaxe\HealthCheckBundle\Service\HealthCheckService:
+        arguments:
+            $checks: !tagged_iterator lahaxearnaud.healthcheck.check

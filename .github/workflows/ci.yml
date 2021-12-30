@@ -1,0 +1,68 @@
+name: CI
+
+on: [ push ]
+
+jobs:
+    build-php:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: c-py/action-dotenv-to-setenv@v3
+                with:
+                    env-file: .env.test
+            -   name: "Cache dependencies installed with composer"
+                uses: "actions/cache@v2"
+                with:
+                    path: "vendor"
+                    key: "php-8.1-composer-${{ hashFiles('composer.json') }}"
+            -   uses: php-actions/composer@v6
+                with:
+                    php_version: "8.1"
+                    version: 2
+                    dev: yes
+                    args: --no-interaction --no-progress --prefer-dist --no-scripts
+    php-l:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: "Run php -l on all files in src"
+                run: >
+                    find src -type f -name '*.php' -exec php -l {} \;
+    tests:
+        runs-on: ubuntu-latest
+        needs: build-php
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: c-py/action-dotenv-to-setenv@v3
+                with:
+                    env-file: .env.test
+            -   name: "Cache dependencies installed with composer"
+                uses: "actions/cache@v2"
+                with:
+                    path: "vendor"
+                    key: "php-8.1-composer-${{ hashFiles('composer.lock') }}"
+                    restore-keys: "php-8.1-composer"
+            -   uses: actions/cache@v2
+                with:
+                    path: 'public/build'
+                    key: ${{ github.sha }}
+            -   uses: actions/cache@v2
+                with:
+                    path: 'public/bundles'
+                    key: ${{ github.sha }}
+            -   uses: php-actions/composer@v6
+                with:
+                    php_version: "8.1"
+                    php_extensions: pcov
+                    version: 2
+                    dev: yes
+                    args: --no-interaction --no-progress --prefer-dist
+            -   uses: php-actions/phpstan@v3
+                with:
+                    path: src
+                    memory_limit: 1G
+                    level: 8
+                    php_version: "8.1"
+#            -   name: Run phpunit
+#                run: php bin/phpunit --coverage-text
+

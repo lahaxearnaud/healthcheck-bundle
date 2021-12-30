@@ -1,0 +1,3 @@
+lahaxearnaud_healthcheck:
+    path: /_healthcheck
+    controller: Alahaxe\HealthCheckBundle\Controller\HealthCheckController
