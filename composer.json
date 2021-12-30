@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Alahaxe\\HealthcheckBundle\\": "src/"
+            "Alahaxe\\HealthCheckBundle\\": "src/"
         }
     },
     "authors": [
