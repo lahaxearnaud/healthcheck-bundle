@@ -2,13 +2,11 @@
 
 namespace Alahaxe\HealthCheckBundle;
 
+use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckStatus implements \JsonSerializable
+class CheckStatus implements CheckStatusInterface
 {
-    public const STATUS_OK = 'ok';
-    public const STATUS_WARNING = 'warning';
-    public const STATUS_INCIDENT = 'incident';
 
     protected int $httpStatus;
 

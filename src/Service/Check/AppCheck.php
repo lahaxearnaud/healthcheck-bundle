@@ -2,12 +2,13 @@
 
 namespace Alahaxe\HealthCheckBundle\Service\Check;
 
+use Alahaxe\HealthCheck\Contracts\CheckInterface;
+use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\CheckStatus;
-use Alahaxe\HealthCheckBundle\Contract\CheckInterface;
 
 class AppCheck implements CheckInterface
 {
-    public function check(): CheckStatus
+    public function check(): CheckStatusInterface
     {
         return new CheckStatus(
             'app',

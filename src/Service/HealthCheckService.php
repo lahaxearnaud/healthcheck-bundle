@@ -2,8 +2,9 @@
 
 namespace Alahaxe\HealthCheckBundle\Service;
 
+use Alahaxe\HealthCheck\Contracts\CheckInterface;
+use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\CheckStatus;
-use Alahaxe\HealthCheckBundle\Contract\CheckInterface;
 
 class HealthCheckService
 {
@@ -16,7 +17,7 @@ class HealthCheckService
     }
 
     /**
-     * @return CheckStatus[]
+     * @return CheckStatusInterface[]
      */
     public function generateStatus():array
     {
