@@ -9,6 +9,15 @@ services:
         resource: '../../Service/Check'
         tags: ['lahaxearnaud.healthcheck.check']
 
+    Alahaxe\HealthCheckBundle\Service\Context\:
+        resource: '../../Service/Context'
+        tags: ['lahaxearnaud.healthcheck.context']
+
+    Alahaxe\HealthCheckBundle\Service\Context\EnvironmentContext:
+        arguments:
+            $env: "%kernel.environment%"
+        tags: ['lahaxearnaud.healthcheck.context']
+
     Alahaxe\HealthCheckBundle\Controller\HealthCheckController:
         autowire: true
         tags: ['controller.service_arguments']
@@ -20,3 +29,4 @@ services:
     Alahaxe\HealthCheckBundle\Service\HealthCheckService:
         arguments:
             $checks: !tagged_iterator lahaxearnaud.healthcheck.check
+            $contextProviders: !tagged_iterator lahaxearnaud.healthcheck.context

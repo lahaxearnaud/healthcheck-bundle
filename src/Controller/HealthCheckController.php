@@ -6,6 +6,7 @@ use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class HealthCheckController extends AbstractController
 {
@@ -17,6 +18,25 @@ class HealthCheckController extends AbstractController
             return $checkStatus->getHttpStatus();
         }, $result));
 
-        return $this->json($result, $httpStatus);
+        $response = $this->json(
+            [
+                'context' => $healthCheckService->generateContext(),
+                'health' => $httpStatus === JsonResponse::HTTP_OK,
+                'checks' => $result,
+            ],
+            $httpStatus,
+            [
+                ''
+            ]
+        );
+
+        $response->setCache([
+            'no_cache' => true,
+            'no_store' => true,
+            'max_age' => 0,
+            's_maxage' => 0,
+        ]);
+
+        return $response;
     }
 }
