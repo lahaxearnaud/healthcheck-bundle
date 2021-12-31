@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckStatus implements CheckStatusInterface
 {
-
     protected int $httpStatus;
 
     public function __construct(
