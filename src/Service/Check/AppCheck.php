@@ -3,8 +3,8 @@
 namespace Alahaxe\HealthCheckBundle\Service\Check;
 
 use Alahaxe\HealthCheck\Contracts\CheckInterface;
+use Alahaxe\HealthCheck\Contracts\CheckStatus;
 use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
-use Alahaxe\HealthCheckBundle\CheckStatus;
 
 class AppCheck implements CheckInterface
 {
