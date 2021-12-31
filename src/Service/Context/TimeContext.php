@@ -1,7 +1,6 @@
 <?php
 namespace Alahaxe\HealthCheckBundle\Service\Context;
 
-
 use Alahaxe\HealthCheck\Contracts\ContextProviderInterface;
 
 class TimeContext implements ContextProviderInterface
