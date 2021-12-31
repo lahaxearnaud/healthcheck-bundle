@@ -91,9 +91,9 @@ The output on `/_healthcheck` will be:
 
 ````json
 {
-    app: {
-        payload: "An optional message, publicly exposed",
-        status: "ok"
+    "app": {
+        "payload": "An optional message, publicly exposed",
+        "status": "ok"
     }
 }
 ````
