@@ -1,13 +1,11 @@
-# healthcheck-bundle
+# HealthCheck Bundle
 
 [![DeepSource](https://deepsource.io/gh/lahaxearnaud/healthcheck-bundle.svg/?label=active+issues&show_trend=true&token=2TynA5-OU1ADI4SRD-GRlgVF)](https://deepsource.io/gh/lahaxearnaud/healthcheck-bundle/?ref=repository-badge)
-[![Total Downloads](https://poser.pugx.org/lahaxearnaud/healthcheck-bundle/downloads.svg)](https://packagist.org/packages/lahaxearnaud/healthcheck-bundle)
-[![Latest Stable Version](https://poser.pugx.org/lahaxearnaud/healthcheck-bundle/v/stable.svg)](https://packagist.org/packages/lahaxearnaud/healthcheck-bundle)
 
 ## Installation
 
-```
-composer require alahaxe/healthcheck-bundle
+```bash
+    composer require alahaxe/healthcheck-bundle
 ```
 
 ## Quickstart
@@ -19,13 +17,14 @@ Register package routes in your application
 ```yaml
 lahaxearnaud_healthcheck:
     resource: "@HealthCheckBundle/Resources/config/router.yaml"
-
 ```
 
 Default route for healthcheck is `/_healthcheck`
 
 
 ### Firewall
+
+Allow any requests to call the healthcheck endpoint.
 
 ```yaml
 security:
@@ -54,13 +53,11 @@ security:
         healthcheck:
             pattern: ^/my-healthcheck
             security: false
-
 ```
 
 ## Documentation
 
 ### Add a custom check
-
 
 Create a custom class that implements `CheckInterface`:
 
@@ -98,14 +95,11 @@ The output on `/_healthcheck` will be:
 }
 ````
 
-
 Register the service with the tag `lahaxearnaud.healthcheck.check` :
-
 
 ```yaml
     App\Service\HealthCheck\AppCheck:
         tags: ['lahaxearnaud.healthcheck.check']
-
 ```
 
 Or if you have many checks you can add the tag on a folder:
@@ -114,7 +108,6 @@ Or if you have many checks you can add the tag on a folder:
     App\Service\HealthCheck\:
         resource: '../src/Service/HealthCheck'
         tags: ['lahaxearnaud.healthcheck.check']
-
 ```
 
 ## License
