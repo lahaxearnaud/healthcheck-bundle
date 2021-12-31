@@ -3,8 +3,10 @@
 namespace Alahaxe\HealthCheckBundle\Service;
 
 use Alahaxe\HealthCheck\Contracts\CheckInterface;
+use Alahaxe\HealthCheck\Contracts\CheckStatus;
 use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
-use Alahaxe\HealthCheckBundle\Contract\ContextProviderInterface;
+use Alahaxe\HealthCheck\Contracts\ContextProviderInterface;
+use JsonSerializable;
 
 class HealthCheckService
 {
@@ -19,15 +21,15 @@ class HealthCheckService
     }
 
     /**
-     * @return array<string, string|array|int|float|\JsonSerializable>
+     * @return array<string, mixed>
      */
     public function generateContext():array
     {
         $result = [];
 
-        /** @var ContextProviderInterface $contextProviders */
-        foreach ($this->contextProviders as $contextProviders) {
-            $result[$contextProviders->getName()] = $contextProviders->getValue();
+        /** @var ContextProviderInterface $contextProvider */
+        foreach ($this->contextProviders as $contextProvider) {
+            $result[$contextProvider->getName()] = $contextProvider->getValue();
         }
 
         return $result;
@@ -42,8 +44,17 @@ class HealthCheckService
 
         /** @var CheckInterface $check */
         foreach ($this->checks as $check) {
-            $status = $check->check();
-            $result[$status->getAttributeName()] = $status;
+            try {
+                $status = $check->check();
+                $result[$status->getAttributeName()] = $status;
+            } catch (\Throwable $throwable) {
+                $result['global'] = new CheckStatus(
+                    'global',
+                    get_class($check),
+                    CheckStatus::STATUS_INCIDENT,
+                    'Fail to execute check'
+                );
+            }
         }
 
         return $result;
