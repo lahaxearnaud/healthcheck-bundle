@@ -2,7 +2,7 @@
 
 namespace Alahaxe\HealthCheckBundle\Controller;
 
-use Alahaxe\HealthCheckBundle\CheckStatus;
+use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,7 +13,7 @@ class HealthCheckController extends AbstractController
     {
         $result = $healthCheckService->generateStatus();
 
-        $httpStatus = (int) max(array_map(static function (CheckStatus $checkStatus):int {
+        $httpStatus = (int) max(array_map(static function (CheckStatusInterface $checkStatus):int {
             return $checkStatus->getHttpStatus();
         }, $result));
 

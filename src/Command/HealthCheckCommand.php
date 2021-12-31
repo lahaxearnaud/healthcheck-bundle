@@ -2,7 +2,7 @@
 
 namespace Alahaxe\HealthCheckBundle\Command;
 
-use Alahaxe\HealthCheckBundle\CheckStatus;
+use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -33,7 +33,7 @@ class HealthCheckCommand extends Command
 
         $result = $this->healthCheckService->generateStatus();
 
-        $httpStatus = max(array_map(static function (CheckStatus $checkStatus):int {
+        $httpStatus = max(array_map(static function (CheckStatusInterface $checkStatus):int {
             return $checkStatus->getHttpStatus();
         }, $result));
 
@@ -46,7 +46,7 @@ class HealthCheckCommand extends Command
                 'Payload'
             ],
             array_map(
-                static function (CheckStatus $checkStatus):array {
+                static function (CheckStatusInterface $checkStatus):array {
                     return [
                         $checkStatus->getAttributeName(),
                         $checkStatus->getStatus(),
