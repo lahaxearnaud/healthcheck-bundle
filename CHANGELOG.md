@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.0.0...v1.0.1) (2022-01-01)
+
+
+### Bug Fixes
+
+* **release:** Force new release ([c81ea87](https://github.com/lahaxearnaud/healthcheck-bundle/commit/c81ea87195cf3763ca71942ff10e250aee4b203a))
+
 # 1.0.0 (2022-01-01)
 
 
