@@ -1,6 +1,9 @@
 # HealthCheck Bundle
 
 [![DeepSource](https://deepsource.io/gh/lahaxearnaud/healthcheck-bundle.svg/?label=active+issues&show_trend=true&token=2TynA5-OU1ADI4SRD-GRlgVF)](https://deepsource.io/gh/lahaxearnaud/healthcheck-bundle/?ref=repository-badge)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/alahaxe/healthcheck-bundle)
+![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-bundle)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/lahaxearnaud/healthcheck-bundle/CI/main)
 
 ## Installation
 
@@ -57,6 +60,14 @@ security:
 
 ## Documentation
 
+### Use available checks
+
+| Name               | Package            | Current version    |
+|--------------------|--------------------|--------------------|
+| Doctrine check     |[alahaxe/healthcheck-doctrine](https://packagist.org/packages/alahaxe/healthcheck-doctrine)|![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-doctrine)|
+| System check       |[alahaxe/healthcheck-system](https://packagist.org/packages/alahaxe/healthcheck-system)    |![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-system)|
+
+
 ### Add a custom check
 
 Create a custom class that implements `CheckInterface`:
@@ -88,9 +99,11 @@ The output on `/_healthcheck` will be:
 
 ````json
 {
-    "app": {
-        "payload": "An optional message, publicly exposed",
-        "status": "ok"
+    "checks": {
+        "app": {
+            "payload": "An optional message, publicly exposed",
+            "status": "ok"
+        }
     }
 }
 ````
