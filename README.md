@@ -5,6 +5,10 @@
 ![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-bundle)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/lahaxearnaud/healthcheck-bundle/CI/main)
 
+This bundle allows to easily expose a healthcheck on a Symfony application.
+You can add as many checks you want and create your own checks.
+
+
 ## Installation
 
 ```bash
