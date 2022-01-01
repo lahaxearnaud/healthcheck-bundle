@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HealthCheckControllerTest extends WebTestCase
 {
-    protected ?HealthCheckController $healthCheckController;
+    protected ?HealthCheckController $healthCheckController = null;
 
     protected function setUp():void
     {

@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class HealthCheckServiceTest extends KernelTestCase
 {
-    protected ?HealthCheckService $healthCheckService;
+    protected ?HealthCheckService $healthCheckService = null;
 
     protected function setUp():void
     {
