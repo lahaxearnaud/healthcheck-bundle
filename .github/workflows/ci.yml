@@ -50,7 +50,7 @@ jobs:
                     level: 8
                     php_version: "8.1"
             -   name: Run phpunit
-                run: php ./vendor/bin/phpunit --coverage-text --coverage-cobertura coverage.xml
+                run: XDEBUG_MODE=coverage php ./vendor/bin/phpunit --coverage-text --coverage-cobertura coverage.xml
             -   name: Report test coverage to DeepSource
                 uses: deepsourcelabs/test-coverage-action@master
                 with:
