@@ -54,7 +54,7 @@ jobs:
             -   name: Report test coverage to DeepSource
                 uses: deepsourcelabs/test-coverage-action@master
                 with:
-                    key: python
+                    key: php
                     coverage-file: coverage.xml
                     dsn: ${{ secrets.DEEPSOURCE_DSN }}
 
