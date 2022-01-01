@@ -49,8 +49,8 @@ jobs:
                     memory_limit: 1G
                     level: 8
                     php_version: "8.1"
-                -   name: Run phpunit
-                    run: php ./vendor/bin/phpunit --coverage-text
+            -   name: Run phpunit
+                run: php ./vendor/bin/phpunit --coverage-text
 
 
     release:
