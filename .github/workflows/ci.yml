@@ -50,8 +50,13 @@ jobs:
                     level: 8
                     php_version: "8.1"
             -   name: Run phpunit
-                run: php ./vendor/bin/phpunit --coverage-text
-
+                run: php ./vendor/bin/phpunit --coverage-text --coverage-cobertura coverage.xml
+            -   name: Report test coverage to DeepSource
+                uses: deepsourcelabs/test-coverage-action@master
+                with:
+                    key: python
+                    coverage-file: coverage.xml
+                    dsn: ${{ secrets.DEEPSOURCE_DSN }}
 
     release:
         runs-on: ubuntu-latest
