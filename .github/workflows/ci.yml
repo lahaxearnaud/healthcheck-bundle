@@ -62,13 +62,14 @@ jobs:
             -   name: Semantic Release
                 uses: cycjimmy/semantic-release-action@v2
                 with:
-                    semantic_version: 15.13.28
+                    semantic_version: 17
                     extra_plugins: |
+                        @semantic-release/commit-analyzer
+                        @semantic-release/release-notes-generator
                         @semantic-release/changelog
                         @semantic-release/git
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
             -   name: New release
                 if: steps.semantic.outputs.new_release_published == 'true'
                 run: |
