@@ -1,0 +1,15 @@
+# 1.0.0 (2022-01-01)
+
+
+### Bug Fixes
+
+* **ci:** Add automatic release ([510c4ad](https://github.com/lahaxearnaud/healthcheck-bundle/commit/510c4ad04805e024b2635b8a1a26a7d72ad2df80))
+* **ci:** Add automatic release ([2033ddb](https://github.com/lahaxearnaud/healthcheck-bundle/commit/2033ddb8eadc4001a91db1ef5b4fb688f88f82a3))
+* **ci:** Add automatic release ([acade58](https://github.com/lahaxearnaud/healthcheck-bundle/commit/acade587a37ea6892d26a24e418f2fcb2d286105))
+* **ci:** Add automatic release ([a72614f](https://github.com/lahaxearnaud/healthcheck-bundle/commit/a72614f0f8ef49c0d7b57ffffa300cf421fd26a2))
+* **ci:** Add automatic release ([aac27e1](https://github.com/lahaxearnaud/healthcheck-bundle/commit/aac27e1ac22f77e4b27eb7c71fb9b35e0630cbba))
+* **ci:** Add automatic release ([542ffcd](https://github.com/lahaxearnaud/healthcheck-bundle/commit/542ffcd5e9a19dc0e0179c2e24ebdf399b385420))
+* **ci:** Add automatic release ([5abc952](https://github.com/lahaxearnaud/healthcheck-bundle/commit/5abc952dc17d6eb89d9b4dfd23eeb9f1fe6cd374))
+* **ci:** Add automatic release ([4f81bad](https://github.com/lahaxearnaud/healthcheck-bundle/commit/4f81bad587bedb747ac8bb1addbfec02034cc683))
+* **ci:** Add automatic release ([c6efb18](https://github.com/lahaxearnaud/healthcheck-bundle/commit/c6efb18ee5c4b5ec4fa17ced5512f111c63b9edb))
+* **ci:** Add automatic release ([6935e8f](https://github.com/lahaxearnaud/healthcheck-bundle/commit/6935e8fc455a7f431c82f587685dcee396546f43))
