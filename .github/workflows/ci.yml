@@ -47,7 +47,7 @@ jobs:
                 with:
                     path: src
                     memory_limit: 1G
-                    level: 8
+                    level: 9
                     php_version: "8.1"
             -   name: Run phpunit
                 run: XDEBUG_MODE=coverage php ./vendor/bin/phpunit --coverage-text --coverage-cobertura coverage.xml
