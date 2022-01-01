@@ -63,11 +63,11 @@ jobs:
                 uses: cycjimmy/semantic-release-action@v2
                 with:
                     semantic_version: 15.13.28
-                extra_plugins: |
-                    @semantic-release/commit-analyzer
-                    @semantic-release/release-notes-generator
-                    @semantic-release/changelog
-                    @semantic-release/github
+                    extra_plugins: |
+                        @semantic-release/commit-analyzer
+                        @semantic-release/release-notes-generator
+                        @semantic-release/changelog
+                        @semantic-release/github
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: New release
