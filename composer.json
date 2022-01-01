@@ -24,6 +24,6 @@
         "symfony/http-kernel": "^5.4 || ^6.0",
         "symfony/framework-bundle": "^5.4 || ^6.0",
         "symfony/http-foundation": "^5.4 || ^6.0",
-        "alahaxe/healthcheck-contracts": "^1.2"
+        "alahaxe/healthcheck-contracts": "^1.0"
     }
 }
