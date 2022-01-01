@@ -1,0 +1,2 @@
+lahaxearnaud_healthcheck:
+    resource: "../../src/Resources/config/router.yaml"

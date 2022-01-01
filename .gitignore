@@ -1,2 +1,6 @@
+# scomposer files
 /vendor/
 composer.lock
+# phpunit files
+coverage
+var
