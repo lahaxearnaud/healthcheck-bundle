@@ -64,10 +64,8 @@ jobs:
                 with:
                     semantic_version: 15.13.28
                     extra_plugins: |
-                        @semantic-release/commit-analyzer
-                        @semantic-release/release-notes-generator
                         @semantic-release/changelog
-                        @semantic-release/github
+                        @semantic-release/git
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: New release
