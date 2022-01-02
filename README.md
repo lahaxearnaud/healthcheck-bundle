@@ -71,6 +71,7 @@ security:
 | Doctrine check     |[alahaxe/healthcheck-doctrine](https://packagist.org/packages/alahaxe/healthcheck-doctrine)|![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-doctrine)|
 | System check       |[alahaxe/healthcheck-system](https://packagist.org/packages/alahaxe/healthcheck-system)    |![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-system)|
 | Redis check        |[alahaxe/healthcheck-redis](https://packagist.org/packages/alahaxe/healthcheck-redis)    |![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-redis)|
+| Curl check        |[alahaxe/healthcheck-redis](https://packagist.org/packages/alahaxe/healthcheck-curl)    |![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-curl)|
 
 
 ### Add a custom check
