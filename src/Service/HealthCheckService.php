@@ -6,7 +6,10 @@ use Alahaxe\HealthCheck\Contracts\CheckInterface;
 use Alahaxe\HealthCheck\Contracts\CheckStatus;
 use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheck\Contracts\ContextProviderInterface;
+use Alahaxe\HealthCheckBundle\Event\HealthCheckAllEvent;
+use Alahaxe\HealthCheckBundle\Event\HealthCheckEvent;
 use JsonSerializable;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class HealthCheckService
 {
@@ -17,6 +20,7 @@ class HealthCheckService
     public function __construct(
         protected iterable $checks,
         protected iterable $contextProviders,
+        protected EventDispatcherInterface $eventDispatcher
     ) {
     }
 
@@ -47,6 +51,8 @@ class HealthCheckService
             try {
                 $status = $check->check();
                 $result[$status->getAttributeName()] = $status;
+
+                $this->eventDispatcher->dispatch(new HealthCheckEvent($status));
             } catch (\Throwable $throwable) {
                 $result['global'] = new CheckStatus(
                     'global',
@@ -54,8 +60,12 @@ class HealthCheckService
                     CheckStatus::STATUS_INCIDENT,
                     'Fail to execute check'
                 );
+
+                $this->eventDispatcher->dispatch(new HealthCheckEvent($result['global']));
             }
         }
+
+        $this->eventDispatcher->dispatch(new HealthCheckAllEvent($result));
 
         return $result;
     }

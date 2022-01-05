@@ -7,9 +7,11 @@ use Alahaxe\HealthCheckBundle\Service\Check\AppCheck;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
 use Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory;
 use Alahaxe\HealthCheckBundle\Tests\Fixture\ExceptionCheck;
+use Alahaxe\HealthCheckBundle\Tests\Fixture\WarningCheck;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class HealthCheckCommandTest extends KernelTestCase
 {
@@ -40,7 +42,8 @@ class HealthCheckCommandTest extends KernelTestCase
     {
         $healthCheckService = new HealthCheckService(
             [new ExceptionCheck()],
-            []
+            [],
+            new EventDispatcher()
         );
         $command = new HealthCheckCommand($healthCheckService, new ReporterFactory(ReporterFactory::TYPE_FULL, ReporterFactory::TYPE_FULL));
         $tester = new CommandTester(
@@ -51,5 +54,23 @@ class HealthCheckCommandTest extends KernelTestCase
         $output = $tester->getDisplay();
         $this->assertStringContainsString(ExceptionCheck::class, $output);
         $this->assertEquals(Command::FAILURE, $tester->getStatusCode());
+    }
+
+    public function testThatCliHealthCheckWithWarning()
+    {
+        $healthCheckService = new HealthCheckService(
+            [new WarningCheck()],
+            [],
+            new EventDispatcher()
+        );
+        $command = new HealthCheckCommand($healthCheckService, new ReporterFactory(ReporterFactory::TYPE_FULL, ReporterFactory::TYPE_FULL));
+        $tester = new CommandTester(
+            $command
+        );
+
+        $tester->execute([]);
+        $output = $tester->getDisplay();
+        $this->assertStringContainsString(WarningCheck::class, $output);
+        $this->assertEquals(Command::SUCCESS, $tester->getStatusCode());
     }
 }

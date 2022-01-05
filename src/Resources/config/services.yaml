@@ -34,9 +34,14 @@ services:
         arguments:
             $checks: !tagged_iterator lahaxearnaud.healthcheck.check
             $contextProviders: !tagged_iterator lahaxearnaud.healthcheck.context
+        autowire: true
 
     alahaxe_healthcheckbundle.report_factory:
         class: Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory
         arguments:
             $httpType: "minimal"
             $cliType: "full"
+
+    Alahaxe\HealthCheckBundle\Event\Subscriber\LoggerSubscriber:
+        autoconfigure: true
+        autowire: true
