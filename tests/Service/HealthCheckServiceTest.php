@@ -7,6 +7,7 @@ use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
 use Alahaxe\HealthCheckBundle\Tests\Fixture\ExceptionCheck;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class HealthCheckServiceTest extends KernelTestCase
 {
@@ -54,7 +55,8 @@ class HealthCheckServiceTest extends KernelTestCase
     {
         $healthCheckService = new HealthCheckService(
             [new ExceptionCheck()],
-            []
+            [],
+            new EventDispatcher()
         );
         $result = $healthCheckService->generateStatus();
         $this->assertIsArray($result);

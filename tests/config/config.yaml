@@ -7,3 +7,4 @@ health_check:
         format: full
     cli:
         format: full
+

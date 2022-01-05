@@ -127,13 +127,13 @@ Or if you have many checks you can add the tag on a folder:
         tags: ['lahaxearnaud.healthcheck.check']
 ```
 
-### Http verbosity
+## Http verbosity
 
 Verbosity configuration allows to redure informations exposed publicly.
 If your healthcheck is protected (firewall, network rules...) you should use a full configuration.
 Default verbosity is `minimal`
 
-#### Full configuration
+### Full configuration
 
 In your symfony configs:
 
@@ -146,37 +146,37 @@ health_check:
 Example of http response:
 ```json
 {
-    context: {
-        environment: "dev",
-        datetime: "2022-01-05T17:00:53+00:00"
+    "context": {
+        "environment": "dev",
+        "datetime": "2022-01-05T17:00:53+00:00"
     },
-    health: false,
-    checks: {
-        databaseConnectivity: {
-            payload: null,
-            status: "ok"
+    "health": false,
+    "checks": {
+        "databaseConnectivity": {
+            "payload": null,
+            "status": "ok"
         },
-        freeSpace: {
-            payload: null,
-            status: "warning"
+        "freeSpace": {
+            "payload": null,
+            "status": "warning"
         },
-        cpuLoad: {
-            payload: null,
-            status: "incident"
+        "cpuLoad": {
+            "payload": null,
+            "status": "incident"
         },
-        redis: {
-            payload: null,
-            status: "ok"
+        "redis": {
+            "payload": null,
+            "status": "ok"
         },
-        app: {
-            payload: null,
-            status: "ok"
+        "app": {
+            "payload": null,
+            "status": "ok"
         }
     }
 }
 ```
 
-#### Minimal configuration:
+### Minimal configuration:
 
 In your symfony configs:
 
@@ -190,9 +190,18 @@ Example of http response:
 
 ```json
 {
-    health: false
+    "health": false
 }
 ```
+
+## Events / Listeners
+
+| Name               | When            |
+|--------------------|--------------------|
+| `Alahaxe\HealthCheckBundle\Event\HealthCheckAllEvent::class` | When all checks are tested |
+| `Alahaxe\HealthCheckBundle\Event\HealthCheckEvent::class` | When a check is tested |
+
+By default a log is written on each `Alahaxe\HealthCheckBundle\Event\HealthCheckAllEvent::class`, take a look at `Alahaxe\HealthCheckBundle\Event\Subscriber\LoggerSubscriber` for an example.
 
 ## License
 
