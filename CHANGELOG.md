@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.0.1...v1.1.0) (2022-01-05)
+
+
+### Features
+
+* **reporter:** Add format configuration ([#2](https://github.com/lahaxearnaud/healthcheck-bundle/issues/2)) ([2edc088](https://github.com/lahaxearnaud/healthcheck-bundle/commit/2edc08870f23b4a34a0998cfc838cd46231d8111))
+
 ## [1.0.1](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.0.0...v1.0.1) (2022-01-01)
 
 
