@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.1.0...v1.2.0) (2022-01-05)
+
+
+### Features
+
+* **event:** Trigger events when checks are done ([#3](https://github.com/lahaxearnaud/healthcheck-bundle/issues/3)) ([24a5577](https://github.com/lahaxearnaud/healthcheck-bundle/commit/24a557701caaf43d8a1099999c97dadc39d44925))
+
 # [1.1.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.0.1...v1.1.0) (2022-01-05)
 
 
