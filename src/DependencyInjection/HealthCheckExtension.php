@@ -24,6 +24,5 @@ class HealthCheckExtension extends Extension
         $definition = $container->getDefinition('alahaxe_healthcheckbundle.report_factory');
         $definition->replaceArgument('$httpType', ($config['http']['format'] ?? 'minimal'));
         $definition->replaceArgument('$cliType', ($config['cli']['format'] ?? 'full'));
-
     }
 }
