@@ -17,7 +17,7 @@ You can add as many checks you want and create your own checks.
 
 ## Quickstart
 
-### Router
+### 1- Router
 
 Register package routes in your application
 
@@ -29,7 +29,7 @@ lahaxearnaud_healthcheck:
 Default route for healthcheck is `/_healthcheck`
 
 
-### Firewall
+### 2- Firewall
 
 Allow any requests to call the healthcheck endpoint.
 
@@ -42,7 +42,7 @@ security:
 
 ```
 
-### Use custom route
+## Use custom route
 
 Do not load resource `@HealthCheckBundle/Resources/config/router.yaml` file in your router but add:
 
@@ -52,7 +52,7 @@ lahaxearnaud_healthcheck:
     controller: Alahaxe\HealthCheckBundle\Controller\HealthCheckController
 ```
 
-Adapt firewall pattern:
+Adapte firewall pattern:
 
 ```yaml
 security:
@@ -62,9 +62,7 @@ security:
             security: false
 ```
 
-## Documentation
-
-### Use available checks
+## Use available checks
 
 | Name               | Package            | Current version    |
 |--------------------|--------------------|--------------------|
@@ -74,7 +72,7 @@ security:
 | Curl check        |[alahaxe/healthcheck-curl](https://packagist.org/packages/alahaxe/healthcheck-curl)    |![Packagist Version](https://img.shields.io/packagist/v/alahaxe/healthcheck-curl)|
 
 
-### Add a custom check
+## Add a custom check
 
 Create a custom class that implements `CheckInterface`:
 
@@ -127,6 +125,73 @@ Or if you have many checks you can add the tag on a folder:
     App\Service\HealthCheck\:
         resource: '../src/Service/HealthCheck'
         tags: ['lahaxearnaud.healthcheck.check']
+```
+
+### Http verbosity
+
+Verbosity configuration allows to redure informations exposed publicly.
+If your healthcheck is protected (firewall, network rules...) you should use a full configuration.
+Default verbosity is `minimal`
+
+#### Full configuration
+
+In your symfony configs:
+
+```yaml
+health_check:
+    http:
+        format: full
+```
+
+Example of http response:
+```json
+{
+    context: {
+        environment: "dev",
+        datetime: "2022-01-05T17:00:53+00:00"
+    },
+    health: false,
+    checks: {
+        databaseConnectivity: {
+            payload: null,
+            status: "ok"
+        },
+        freeSpace: {
+            payload: null,
+            status: "warning"
+        },
+        cpuLoad: {
+            payload: null,
+            status: "incident"
+        },
+        redis: {
+            payload: null,
+            status: "ok"
+        },
+        app: {
+            payload: null,
+            status: "ok"
+        }
+    }
+}
+```
+
+#### Minimal configuration:
+
+In your symfony configs:
+
+```yaml
+health_check:
+    http:
+        format: minimal
+```
+
+Example of http response:
+
+```json
+{
+    health: false
+}
 ```
 
 ## License

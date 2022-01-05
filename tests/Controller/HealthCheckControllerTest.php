@@ -24,7 +24,7 @@ class HealthCheckControllerTest extends WebTestCase
     {
         /** @var HealthCheckService $healthCheckService */
         $healthCheckService = self::getContainer()->get(HealthCheckService::class);
-        $response = $this->healthCheckController->__invoke($healthCheckService);
+        $response = $this->healthCheckController->__invoke();
 
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());

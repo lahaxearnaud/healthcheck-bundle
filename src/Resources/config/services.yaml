@@ -21,12 +21,22 @@ services:
     Alahaxe\HealthCheckBundle\Controller\HealthCheckController:
         autowire: true
         tags: ['controller.service_arguments']
+        bind:
+            $reporterFactory: '@alahaxe_healthcheckbundle.report_factory'
 
     Alahaxe\HealthCheckBundle\Command\HealthCheckCommand:
         autowire: true
         tags: ['console.command']
+        bind:
+            $reporterFactory: '@alahaxe_healthcheckbundle.report_factory'
 
     Alahaxe\HealthCheckBundle\Service\HealthCheckService:
         arguments:
             $checks: !tagged_iterator lahaxearnaud.healthcheck.check
             $contextProviders: !tagged_iterator lahaxearnaud.healthcheck.context
+
+    alahaxe_healthcheckbundle.report_factory:
+        class: Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory
+        arguments:
+            $httpType: "minimal"
+            $cliType: "full"

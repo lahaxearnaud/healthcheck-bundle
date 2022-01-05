@@ -4,6 +4,7 @@ namespace Alahaxe\HealthCheckBundle\Command;
 
 use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
+use Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 class HealthCheckCommand extends Command
 {
     public function __construct(
-        protected HealthCheckService $healthCheckService
+        protected HealthCheckService $healthCheckService,
+        protected ReporterFactory $reporterFactory
     ) {
         parent::__construct();
     }
@@ -33,9 +35,9 @@ class HealthCheckCommand extends Command
 
         $result = $this->healthCheckService->generateStatus();
 
-        $httpStatus = max(array_map(static function (CheckStatusInterface $checkStatus):int {
-            return $checkStatus->getHttpStatus();
-        }, $result));
+        $reporter = $this->reporterFactory->forge(ReporterFactory::CONTEXT_CLI);
+
+        $httpStatus = $reporter->calculateHttpCode($result);
 
         $io->table(
             [
@@ -45,18 +47,7 @@ class HealthCheckCommand extends Command
                 'Checker',
                 'Payload'
             ],
-            array_map(
-                static function (CheckStatusInterface $checkStatus):array {
-                    return [
-                        $checkStatus->getAttributeName(),
-                        $checkStatus->getStatus(),
-                        $checkStatus->getHttpStatus(),
-                        $checkStatus->getCheckerClass(),
-                        $checkStatus->getPayload(),
-                    ];
-                },
-                $result
-            )
+            $reporter->format($result, [])
         );
 
         if ($httpStatus === Response::HTTP_OK) {
@@ -64,7 +55,12 @@ class HealthCheckCommand extends Command
             return self::SUCCESS;
         }
 
-        $io->success('Ko');
+        if ($httpStatus === Response::HTTP_PARTIAL_CONTENT) {
+            $io->warning('At least one warning');
+            return self::SUCCESS;
+        }
+
+        $io->error('Ko');
         return self::FAILURE;
     }
 }
