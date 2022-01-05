@@ -5,6 +5,7 @@ namespace Alahaxe\HealthCheckBundle\Tests\Command;
 use Alahaxe\HealthCheckBundle\Command\HealthCheckCommand;
 use Alahaxe\HealthCheckBundle\Service\Check\AppCheck;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
+use Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory;
 use Alahaxe\HealthCheckBundle\Tests\Fixture\ExceptionCheck;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
@@ -41,7 +42,7 @@ class HealthCheckCommandTest extends KernelTestCase
             [new ExceptionCheck()],
             []
         );
-        $command = new HealthCheckCommand($healthCheckService);
+        $command = new HealthCheckCommand($healthCheckService, new ReporterFactory(ReporterFactory::TYPE_FULL, ReporterFactory::TYPE_FULL));
         $tester = new CommandTester(
             $command
         );

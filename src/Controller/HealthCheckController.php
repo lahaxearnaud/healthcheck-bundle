@@ -4,30 +4,27 @@ namespace Alahaxe\HealthCheckBundle\Controller;
 
 use Alahaxe\HealthCheck\Contracts\CheckStatusInterface;
 use Alahaxe\HealthCheckBundle\Service\HealthCheckService;
+use Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class HealthCheckController extends AbstractController
 {
-    public function __invoke(HealthCheckService $healthCheckService):JsonResponse
-    {
-        $result = $healthCheckService->generateStatus();
+    public function __construct(
+        protected ReporterFactory $reporterFactory,
+        protected HealthCheckService $healthCheckService
+    ) {
+    }
 
-        $httpStatus = (int) max(array_map(static function (CheckStatusInterface $checkStatus):int {
-            return $checkStatus->getHttpStatus();
-        }, $result));
+    public function __invoke():JsonResponse
+    {
+        $result = $this->healthCheckService->generateStatus();
+        $reporter = $this->reporterFactory->forge();
 
         $response = $this->json(
-            [
-                'context' => $healthCheckService->generateContext(),
-                'health' => $httpStatus === JsonResponse::HTTP_OK,
-                'checks' => $result,
-            ],
-            $httpStatus,
-            [
-                ''
-            ]
+            $reporter->format($result, $this->healthCheckService->generateContext()),
+            $reporter->calculateHttpCode($result)
         );
 
         $response->setCache([

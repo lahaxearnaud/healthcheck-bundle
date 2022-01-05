@@ -2,6 +2,7 @@
 
 namespace Alahaxe\HealthCheckBundle\DependencyInjection;
 
+use Alahaxe\HealthCheckBundle\Service\Reporter\ReporterFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -16,5 +17,13 @@ class HealthCheckExtension extends Extension
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $definition = $container->getDefinition('alahaxe_healthcheckbundle.report_factory');
+        $definition->replaceArgument('$httpType', ($config['http']['format'] ?? 'minimal'));
+        $definition->replaceArgument('$cliType', ($config['cli']['format'] ?? 'full'));
+
     }
 }

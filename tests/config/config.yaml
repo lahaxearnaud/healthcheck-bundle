@@ -2,4 +2,8 @@ framework:
     secret: secret
     test: true
 
-health_check: ~
+health_check:
+    http:
+        format: full
+    cli:
+        format: full
