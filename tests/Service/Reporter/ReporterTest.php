@@ -64,7 +64,7 @@ class ReporterTest extends TestCase
                 if ($col === null) {
                     continue;
                 }
-                
+
                 $this->assertIsScalar($col);
             }
         }
@@ -75,7 +75,7 @@ class ReporterTest extends TestCase
 
 
 
-    protected function resultDataProvider():array
+    public function resultDataProvider():array
     {
         return [
             [
