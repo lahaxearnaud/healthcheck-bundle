@@ -88,7 +88,7 @@ class ReporterTest extends TestCase
                 [
                     'app' => new CheckStatus('app', AppCheck::class, CheckStatusInterface::STATUS_WARNING)
                 ],
-                206
+                200
             ],
             [
                 [
