@@ -20,7 +20,7 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php-version }}
-                    extensions: pcov
+                    extensions: pcov phpstan
                 env:
                     fail-fast: true
             -   name: "Install php deps"
@@ -39,14 +39,8 @@ jobs:
             # ###
             # QA
             # ###
-            -   name: "Run Phpstan"
-                uses: php-actions/phpstan@v3
-                with:
-                    path: src
-                    memory_limit: 1G
-                    level: ${{ env.PHPSTAN_LEVEL }}
-                    php_version: ${{ matrix.php-version }}
-                    args: "--no-progress -n"
+            -   name: "Run phpstan"
+                run: php vendor/bin/phpstan analyse --level=${{ env.PHPSTAN_LEVEL }} src --no-progress -n
             # ###
             # UNIT TESTS
             # ###
