@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.2.0...v1.2.1) (2022-01-06)
+
+
+### Bug Fixes
+
+* **deps:** Bump alahaxe/healthcheck-contracts to 1.1 ([d5de3ef](https://github.com/lahaxearnaud/healthcheck-bundle/commit/d5de3effda742d3457a061d1a458e09d32286864))
+
 # [1.2.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.1.0...v1.2.0) (2022-01-05)
 
 
