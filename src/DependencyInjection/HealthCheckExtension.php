@@ -11,8 +11,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 class HealthCheckExtension extends Extension
 {
     /**
-     * @phpstan-ignore-next-line
-     */
+     * @param array<string, array<string, string>> $configs
+    */
     public function load(array $configs, ContainerBuilder $container):void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
