@@ -9,7 +9,7 @@ jobs:
             PHPSTAN_LEVEL: 9
         strategy:
             matrix:
-                php-version: [ "8.0", "8.1", "8.2" ]
+                php-version: [ "8.2" ]
                 composer-options: [ '--prefer-lowest', '']
         steps:
             # ###
@@ -59,7 +59,8 @@ jobs:
             # RELEASE
             # ###
             -   name: Semantic Release
-                uses: cycjimmy/semantic-release-action@v2
+                if: github.ref == 'refs/heads/main'
+                uses: cycjimmy/semantic-release-action@v4
                 with:
                     extra_plugins: |
                         @semantic-release/commit-analyzer
