@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.2.1...v2.0.0) (2023-11-29)
+
+
+### Features
+
+* SF6 support ([#6](https://github.com/lahaxearnaud/healthcheck-bundle/issues/6)) ([e8cba9a](https://github.com/lahaxearnaud/healthcheck-bundle/commit/e8cba9aff907894567c702089dd363c2e7226269))
+
+
+### BREAKING CHANGES
+
+* Drop PHP < 8.2 & DROP SF5
+
 ## [1.2.1](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.2.0...v1.2.1) (2022-01-06)
 
 
