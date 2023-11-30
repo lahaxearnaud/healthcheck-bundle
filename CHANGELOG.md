@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v2.0.0...v2.0.1) (2023-11-30)
+
+
+### Bug Fixes
+
+* allow psr log 1 and 3 ([#7](https://github.com/lahaxearnaud/healthcheck-bundle/issues/7)) ([56e72f5](https://github.com/lahaxearnaud/healthcheck-bundle/commit/56e72f523841841df3300f16013685b52c7d9dca))
+
 # [2.0.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v1.2.1...v2.0.0) (2023-11-29)
 
 
