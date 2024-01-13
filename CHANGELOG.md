@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v2.0.1...v2.0.2) (2024-01-13)
+
+
+### Bug Fixes
+
+* symfony/dependency-injection must be aligned with other symfony/* ([#8](https://github.com/lahaxearnaud/healthcheck-bundle/issues/8)) ([5b3be21](https://github.com/lahaxearnaud/healthcheck-bundle/commit/5b3be211610bd7c5300bd718c471a7b1983cef20))
+
 ## [2.0.1](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v2.0.0...v2.0.1) (2023-11-30)
 
 
