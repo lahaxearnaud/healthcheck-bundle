@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v2.0.2...v2.1.0) (2026-10-24)
+
+
+### Features
+
+* add Symfony 8 support ([#9](https://github.com/lahaxearnaud/healthcheck-bundle/issues/9)) ([8347124](https://github.com/lahaxearnaud/healthcheck-bundle/commit/8347124b3b3736096d9d35f28e5f3d5110fdbca1))
+
 ## [2.0.2](https://github.com/lahaxearnaud/healthcheck-bundle/compare/v2.0.1...v2.0.2) (2024-01-13)
 
 
