@@ -2,6 +2,7 @@
 
 namespace Alahaxe\HealthCheckBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -10,25 +11,21 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder():TreeBuilder
     {
         $treeBuilder = new TreeBuilder('health_check');
-        /** @phpstan-ignore-next-line  */
-        $treeBuilder->getRootNode()
-            ->children()
-                ->arrayNode('http')
-                    ->children()
-                        ->enumNode('format')
-                            ->values(['full', 'minimal'])
-                            ->defaultValue('minimal')
-                        ->end()
-                    ->end()
-                ->end()
-                ->arrayNode('cli')
-                    ->children()
-                        ->enumNode('format')
-                        ->values(['full'])
-                        ->defaultValue('full')
-                    ->end()
-                ->end()
-            ->end();
+
+        /** @var ArrayNodeDefinition $rootNode */
+        $rootNode = $treeBuilder->getRootNode();
+
+        $httpNode = $rootNode->children()->arrayNode('http');
+        $httpNode->children()
+            ->enumNode('format')
+            ->values(['full', 'minimal'])
+            ->defaultValue('minimal');
+
+        $cliNode = $rootNode->children()->arrayNode('cli');
+        $cliNode->children()
+            ->enumNode('format')
+            ->values(['full'])
+            ->defaultValue('full');
 
         return $treeBuilder;
     }
