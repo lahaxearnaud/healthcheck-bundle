@@ -14,24 +14,18 @@ class Configuration implements ConfigurationInterface
 
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
-        $rootNode
-            ->children()
-                ->arrayNode('http')
-                    ->children()
-                        ->enumNode('format')
-                            ->values(['full', 'minimal'])
-                            ->defaultValue('minimal')
-                        ->end()
-                    ->end()
-                ->end()
-                ->arrayNode('cli')
-                    ->children()
-                        ->enumNode('format')
-                        ->values(['full'])
-                        ->defaultValue('full')
-                    ->end()
-                ->end()
-            ->end();
+
+        $httpNode = $rootNode->children()->arrayNode('http');
+        $httpNode->children()
+            ->enumNode('format')
+            ->values(['full', 'minimal'])
+            ->defaultValue('minimal');
+
+        $cliNode = $rootNode->children()->arrayNode('cli');
+        $cliNode->children()
+            ->enumNode('format')
+            ->values(['full'])
+            ->defaultValue('full');
 
         return $treeBuilder;
     }
