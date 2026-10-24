@@ -10,7 +10,6 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder():TreeBuilder
     {
         $treeBuilder = new TreeBuilder('health_check');
-        /** @phpstan-ignore-next-line  */
         $treeBuilder->getRootNode()
             ->children()
                 ->arrayNode('http')
